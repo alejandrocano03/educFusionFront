@@ -4,7 +4,7 @@
       <h1 class="title">EduCFusion</h1>
       <button class="logout-button" (click)="logout()">Cerrar sesión</button>
   </div>
-  <p class="welcome-message">Bienvenido, {{ usuario ? usuario.nombre : 'invitado' }}</p>
+  <p class="welcome-message">Bienvenido, {{ usuario.nombre }}</p>
 
   <div class="panels-container">
     <div class="panel" (click)="navigateTo('panel1')">Buscar Centros Educativos</div>
