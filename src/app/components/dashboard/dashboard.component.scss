@@ -1,0 +1,84 @@
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; 
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-top: 20px; 
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+  }
+  
+  .logo {
+    width: 200px;
+    height: auto;
+    margin-right: 20px;
+  }
+  
+  .title {
+    font-size: 45px;
+    font-weight: bold;
+    color: #4a90e2;
+    text-align: center;
+    width: calc(100% - 220px);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+  }
+  .welcome-message {
+    font-size: 16px;
+    color: black; 
+    margin-bottom: 20px;
+  }
+  
+  .logout-button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 10px;
+  }
+  
+  .logout-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .panels-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 20px;
+  }
+  
+  .panel {
+    background-color: #e3f2fd;
+    border: 1px solid #90caf9;
+    padding: 40px;
+    border-radius: 8px;
+    text-align: center; 
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 18px;
+    margin: 10px;
+  }
+  
+  .panel:hover {
+    background-color: #bbdefb;
+  }
+  
+  .second-row {
+    justify-content: center;
+  }

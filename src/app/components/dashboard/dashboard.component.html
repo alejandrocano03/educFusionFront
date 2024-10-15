@@ -1,0 +1,19 @@
+<div class="dashboard-container">
+  <div class="header">
+      <img src="logoJCYL.png" alt="JCYL" class="logo">
+      <h1 class="title">EduCFusion</h1>
+      <button class="logout-button" (click)="logout()">Cerrar sesión</button>
+  </div>
+  <p class="welcome-message">Bienvenido, {{ usuario ? usuario.nombre : 'invitado' }}</p>
+
+  <div class="panels-container">
+    <div class="panel" (click)="navigateTo('panel1')">Buscar Centros Educativos</div>
+    <div class="panel" (click)="navigateTo('panel2')">Estadisticas y Resultados Académicos</div>
+    <div class="panel" (click)="navigateTo('panel3')">Generación de Informes</div>
+  </div>
+
+  <div class="panels-container second-row">
+    <div class="panel" (click)="navigateTo('panel4')">Mapas Interactivos</div>
+    <div class="panel" (click)="navigateTo('panel5')">Opiniones de Usuarios</div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="login-container">
+    <div class="header">
+        <img src="logoJCYL.png" alt="JCYL" class="logo">
+        <h1 class="title">EduCFusion</h1>
+    </div>
+
+    <div class="login-box">
+        <h2 class="login-title">Inicio de sesión</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="iniciarSesion()">
+            <div class="input-group">
+                <mat-label>Email:</mat-label>
+                <input matInput formControlName="correoElectronico" required placeholder="Introduce correo electrónico..."
+                       [ngClass]="{'input-error': loginForm.controls['correoElectronico'].invalid && (loginForm.controls['correoElectronico'].touched || loginForm.controls['correoElectronico'].dirty)}"/>
+                <small class="error-message" *ngIf="loginForm.controls['correoElectronico'].hasError('required') && (loginForm.controls['correoElectronico'].touched || loginForm.controls['correoElectronico'].dirty)">
+                    El correo es obligatorio.
+                </small>
+                <small class="error-message" *ngIf="loginForm.controls['correoElectronico'].hasError('email') && (loginForm.controls['correoElectronico'].touched || loginForm.controls['correoElectronico'].dirty)">
+                    Por favor, introduce un correo electrónico válido.
+                </small>
+            </div>
+            <div class="input-group">
+                <mat-label>Contraseña:</mat-label>
+                <input matInput type="password" formControlName="contraseña" required placeholder="Introduce contraseña..."
+                       [ngClass]="{'input-error': loginForm.controls['contraseña'].invalid && (loginForm.controls['contraseña'].touched || loginForm.controls['contraseña'].dirty)}"/>
+                <small class="error-message" *ngIf="loginForm.controls['contraseña'].hasError('required') && (loginForm.controls['contraseña'].touched || loginForm.controls['contraseña'].dirty)">
+                    La contraseña es obligatorio.
+                </small>
+            </div>
+            <button mat-raised-button class="login-button" type="submit">Acceder</button>
+        </form>
+        <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+        </div>
+    </div>
+</div>
