@@ -1,5 +1,5 @@
 import { Usuario } from './usuario';
-import { CentroEducativo } from './CentroEducativo';
+import { CentroEducativo } from './centroEducativo';
 
 export class Informe {
   tipoInforme?: string;

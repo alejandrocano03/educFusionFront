@@ -1,4 +1,4 @@
-import { CategoriaCentros } from "./CategoriaCentros";
+import { CategoriaCentros } from "./categoriaCentros";
 
 
 export class CentroEducativo {

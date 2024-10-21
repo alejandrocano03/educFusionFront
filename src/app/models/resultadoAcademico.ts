@@ -1,4 +1,4 @@
-import { CentroEducativo } from './CentroEducativo';
+import { CentroEducativo } from './centroEducativo';
 
 export class ResultadoAcademico {
   añoAcademico?: number;

@@ -1,5 +1,5 @@
-import { Usuario } from './Usuario';
 import { CentroEducativo } from './centroEducativo';
+import { Usuario } from './usuario';
 
 export class OpinionUsuario {
   fechaOpinion?: Date;

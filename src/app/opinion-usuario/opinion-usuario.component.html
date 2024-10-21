@@ -1,0 +1,77 @@
+<div class="opinion-container">
+  <h1 class="title">Opiniones de Usuario</h1>
+
+  <div class="main-content">
+    <!-- Formulario a la izquierda -->
+    <div class="form-section">
+      <form [formGroup]="opinionForm" (ngSubmit)="submitOpinion()">
+        <div class="input-group">
+          <mat-form-field appearance="fill" class="half-width">
+            <mat-label>Nombre de Usuario</mat-label>
+            <input matInput [value]="usuario ? usuario.nombre : 'Invitado'" disabled>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="half-width">
+            <mat-label>Centro</mat-label>
+            <mat-select formControlName="centro">
+              <mat-option *ngFor="let centro of centros" [value]="centro.nombre">
+                {{ centro.nombre }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="opinionForm.get('centro')?.hasError('required')">Campo obligatorio</mat-error>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Comentario</mat-label>
+          <textarea matInput formControlName="comentario" rows="5" maxlength="200"></textarea>
+          <mat-error *ngIf="opinionForm.get('comentario')?.hasError('required')">Campo obligatorio</mat-error>
+        </mat-form-field>
+
+        <div class="buttons">
+          <button mat-button color="primary" class="login-button" type="submit">Enviar Opinión</button>
+          <button mat-button color="warn" class="login-button" (click)="volver()">Volver</button>
+        </div>
+      </form>
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+    </div>
+
+    <!-- Listado de opiniones a la derecha -->
+    <div class="opiniones-section">
+      <h2 class="valoraciones-title">Valoraciones de Centros</h2>
+      <mat-paginator [length]="totalOpiniones" [pageSize]="5" [pageSizeOptions]="[5, 10]"></mat-paginator>
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      
+        <!-- Columna Nombre -->
+        <ng-container matColumnDef="usuarioNombre">
+          <th mat-header-cell *matHeaderCellDef> Nombre </th>
+          <td mat-cell *matCellDef="let opinion"> {{ opinion.usuario.nombre }} </td>
+        </ng-container>
+      
+        <!-- Columna Centro -->
+        <ng-container matColumnDef="centro">
+          <th mat-header-cell *matHeaderCellDef> Centro </th>
+          <td mat-cell *matCellDef="let opinion"> {{ opinion.centro.nombre }} </td>
+        </ng-container>
+      
+        <!-- Columna Comentario -->
+        <ng-container matColumnDef="comentario">
+          <th mat-header-cell *matHeaderCellDef> Comentario </th>
+          <td mat-cell *matCellDef="let opinion"> {{ opinion.comentario }} </td>
+        </ng-container>
+      
+        <!-- Columna Fecha -->
+        <ng-container matColumnDef="fechaOpinion">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+          <td mat-cell *matCellDef="let opinion"> {{ formatDate(opinion.fechaOpinion) }} </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      </div>
+  </div>
+</div>
+ 
