@@ -7,13 +7,15 @@ import { MatPaginatorIntl } from '@angular/material/paginator';
 import { CustomPaginator } from './utils/CustomPaginator';
 import { AuthGuard } from './auth.guard';
 import { OpinionUsuarioComponent } from './components/opinion-usuario/opinion-usuario.component';
-import { ListadoCentrosComponent } from './listado-centros/listado-centros.component';
+import { ListadoCentrosComponent } from './components/listado-centros/listado-centros.component';
+import { EstadisticasResultadosComponent } from './components/estadisticas-resultados/estadisticas-resultados.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'principal', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'opinionUsuario', component: OpinionUsuarioComponent, canActivate: [AuthGuard] },
   { path: 'listadosCentros', component: ListadoCentrosComponent, canActivate: [AuthGuard] },
+  { path: 'estadisticasYResultados', component: EstadisticasResultadosComponent, canActivate: [AuthGuard] },
 
   { path: '**', redirectTo: '/login' }
 ];

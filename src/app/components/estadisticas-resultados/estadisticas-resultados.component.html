@@ -1,0 +1,71 @@
+<div class="estadisticas-container">
+  <h1 class="title">Estadísticas y Resultados</h1>
+
+  <div class="filter-section">
+    <mat-select class="filter-select" [formControl]="nivelEducativoControl" (selectionChange)="onNivelEducativoSChange()">
+      <mat-option value="" disabled selected>Filtro por Nivel educativo</mat-option>
+      <mat-option *ngFor="let nivel of NIVEL_EDUCATIVO_S" [value]="nivel">{{ nivel }}</mat-option>
+    </mat-select>
+
+    <input
+      class="search-input"
+      type="text"
+      [formControl]="buscadorControl"
+      (input)="onSearchInputChange()"
+      placeholder="Buscar dinámicamente estadísticas..."
+    />
+    <button class="reset-button" (click)="resetFilters()">Resetear Filtros</button>
+  </div>
+
+  <mat-paginator
+    [length]="dataSource.data.length"
+    [pageSize]="10"
+    [pageSizeOptions]="[10]"
+    (page)="onPageChange()"
+    showFirstLastButtons>
+  </mat-paginator>
+
+  <table mat-table [dataSource]="dataSource" matSort class="mat-table">
+    <ng-container matColumnDef="nombreCentro">
+      <th mat-header-cell *matHeaderCellDef> Nombre Centro </th>
+      <td mat-cell *matCellDef="let estadistica"> {{ estadistica.centro.nombre }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="anoAcademico">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Año Académico </th>
+      <td mat-cell *matCellDef="let estadistica"> {{ estadistica.anoAcademico }} </td>
+    </ng-container>    
+
+    <ng-container matColumnDef="nivelEducativo">
+      <th mat-header-cell *matHeaderCellDef> Nivel Educativo </th>
+      <td mat-cell *matCellDef="let estadistica"> {{ estadistica.nivelEducativo }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="numeroAlumnos">
+      <th mat-header-cell *matHeaderCellDef> Alumnos </th>
+      <td mat-cell *matCellDef="let estadistica"> {{ estadistica.numeroAlumnos }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="promedioCalificaciones">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Promedio Calificaciones </th>
+      <td mat-cell *matCellDef="let estadistica"> {{ estadistica.promedioCalificaciones }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="numeroAlumnosNEEs">
+      <th mat-header-cell *matHeaderCellDef> Alumnos NEEs </th>
+      <td mat-cell *matCellDef="let estadistica"> {{ estadistica.numeroAlumnosNEEs }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="datosEspecificosRendimiento">
+      <th mat-header-cell *matHeaderCellDef> Datos Específicos </th>
+      <td mat-cell *matCellDef="let estadistica"> {{ estadistica.datosEspecificosRendimiento }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let estadistica; columns: displayedColumns;"></tr>
+  </table>
+
+  <div class="buttons">
+    <button class="back-button" (click)="volver()">Volver</button>
+  </div>
+</div>

@@ -10,28 +10,29 @@
     <input
       class="search-input"
       type="text"
-      [formControl]="nombreCentroControl"
+      [formControl]="buscadorControl"
       (input)="onSearchInputChange()"
       placeholder="Buscar centro..."
     />
     <button class="reset-button" (click)="resetFilters()">Resetear Filtros</button>
   </div>
 
-    <mat-paginator
-      [length]="filteredCentros.length"
-      [pageSize]="10"
-      [pageSizeOptions]="[10]"
-      (page)="onPageChange($event)"
-      showFirstLastButtons>
-    </mat-paginator>
-  <table mat-table matSort [dataSource]="paginatedCentros" class="mat-table">
+  <mat-paginator
+    [length]="dataSource.data.length"
+    [pageSize]="10"
+    [pageSizeOptions]="[10]"
+    (page)="onPageChange()"
+    showFirstLastButtons>
+  </mat-paginator>
+
+  <table mat-table [dataSource]="dataSource" matSort class="mat-table">
     <ng-container matColumnDef="nombre">
-      <th mat-header-cell mat-sort-header *matHeaderCellDef> Nombre </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
       <td mat-cell *matCellDef="let centro"> {{ centro.nombre }} </td>
     </ng-container>
 
     <ng-container matColumnDef="direccion">
-      <th mat-header-cell mat-sort-header *matHeaderCellDef> Dirección </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Dirección </th>
       <td mat-cell *matCellDef="let centro"> {{ centro.direccion }} </td>
     </ng-container>
 
@@ -46,7 +47,7 @@
     </ng-container>
 
     <ng-container matColumnDef="numeroMaestros">
-      <th mat-header-cell *matHeaderCellDef> Profesores </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Profesores </th>
       <td mat-cell *matCellDef="let centro"> {{ centro.numeroMaestros }} </td>
     </ng-container>
 

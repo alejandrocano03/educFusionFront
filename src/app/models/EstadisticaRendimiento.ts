@@ -1,7 +1,7 @@
 import { CentroEducativo } from "./centroEducativo";
 
 export class EstadisticaRendimiento {
-  añoAcademico?: number;
+  anoAcademico?: number;
   nivelEducativo?: string;
   numeroAlumnos?: number;
   promedioCalificaciones?: number;
