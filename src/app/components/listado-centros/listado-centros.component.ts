@@ -43,7 +43,7 @@ export class ListadoCentrosComponent implements OnInit {
   centros: CentroEducativo[] = [];
   filteredCentros: CentroEducativo[] = [];
 
-  // FormsControl para los filtros
+  // FormControls para los filtros
   tipoCentroControl = new FormControl('');
   buscadorControl = new FormControl('');
 
@@ -68,51 +68,35 @@ export class ListadoCentrosComponent implements OnInit {
   loadCentros(): void {
     this.centroService.getAllCentros().subscribe(centros => {
       this.centros = centros;
-      this.filteredCentros = centros;
-      this.dataSource.data = this.filteredCentros;
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
+      this.applyFilters();
     });
   }
 
   /**
-   * Filtra los centros por tipo al seleccionar en el dropdown.
+   * Filtra los centros de acuerdo al tipo seleccionado y al input de búsqueda.
    */
-  onTipoCentroChange(): void {
+  applyFilters(): void {
     const tipoCentro = this.tipoCentroControl.value;
-
-    if (tipoCentro) {
-      this.centroService.filterByTipoCentro(tipoCentro).subscribe(centros => {
-        this.filteredCentros = centros;
-        this.dataSource.data = this.filteredCentros;
-        this.dataSource.paginator = this.paginator;
-      });
-    } else {
-      this.loadCentros();
-    }
-  }
-
-  /**
-   * Filtra dinámicamente los centros por nombre, dirección, tipo, alumnos, profesores, niveles educativos,
-   * coordenadas geográficas y datos de rendimiento académico al introducir texto en el input.
-   */
-  onSearchInputChange(): void {
     const searchValue = this.buscadorControl.value?.toLowerCase() || '';
 
     this.filteredCentros = this.centros.filter(centro => {
-      return (
+      const matchesTipoCentro = tipoCentro ? centro.tipoCentro === tipoCentro : true;
+      const matchesSearch = (
         centro.nombre.toLowerCase().includes(searchValue) ||
         centro.direccion.toLowerCase().includes(searchValue) ||
         centro.nivelesEducativosOfrecidos.toLowerCase().includes(searchValue) ||
-        centro.tipoCentro.toLowerCase().includes(searchValue) ||
         centro.numeroAlumnos.toString().includes(searchValue) ||
         centro.numeroMaestros.toString().includes(searchValue) ||
         centro.coordenadasGeograficas.toString().includes(searchValue) ||
         centro.datosRendimientoAcademico?.toLowerCase().includes(searchValue)
       );
+
+      return matchesTipoCentro && matchesSearch;
     });
+
     this.dataSource.data = this.filteredCentros;
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   /**
@@ -120,7 +104,6 @@ export class ListadoCentrosComponent implements OnInit {
    */
   onPageChange(): void {
     this.dataSource.paginator = this.paginator;
-
   }
 
   /**

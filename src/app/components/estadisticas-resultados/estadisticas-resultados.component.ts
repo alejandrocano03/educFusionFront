@@ -37,10 +37,10 @@ export class EstadisticasResultadosComponent implements OnInit {
   
   // Tablas
   dataSource = new MatTableDataSource<EstadisticaRendimiento>();
-  displayedColumns: string[] = ['nombreCentro','anoAcademico','nivelEducativo','numeroAlumnos',
-    'promedioCalificaciones','numeroAlumnosNEEs','datosEspecificosRendimiento',];
-  
-    // Filtros
+  displayedColumns: string[] = ['nombreCentro', 'anoAcademico', 'nivelEducativo', 'numeroAlumnos',
+    'promedioCalificaciones', 'numeroAlumnosNEEs', 'datosEspecificosRendimiento'];
+
+  // Filtros
   estadisticas: EstadisticaRendimiento[] = [];
   filteredEstadisticas: EstadisticaRendimiento[] = [];
 
@@ -69,37 +69,18 @@ export class EstadisticasResultadosComponent implements OnInit {
   loadEstadisticas(): void {
     this.estadisticaService.getAllEstadisticas().subscribe(estadisticas => {
       this.estadisticas = estadisticas;
-      this.filteredEstadisticas = estadisticas;
-      this.dataSource.data = this.filteredEstadisticas;
-      this.dataSource.sort = this.sort; 
-      this.dataSource.paginator = this.paginator;
+      this.applyFilters();
     });
   }
 
-  /**
-   * Método para controlar el cambio del filtro 'Nivel educativo' y filtrar dinámicamente en la tabla
-   * dependiendo del filtro de Nivel educativo que se introduzca.
-   */
-  onNivelEducativoSChange(): void {
+  // Método para aplicar filtros combinados
+  applyFilters(): void {
     const nivelEducativo = this.nivelEducativoControl.value;
-
-    if (nivelEducativo) {
-      this.filteredEstadisticas = this.estadisticas.filter(estadistica => estadistica.nivelEducativo === nivelEducativo);
-    } else {
-      this.filteredEstadisticas = this.estadisticas;
-    }
-
-    this.dataSource.data = this.filteredEstadisticas; 
-    this.dataSource.paginator = this.paginator;
-  }
-
-  /**
-   * Método para controlar el input de búsqueda de forma dinámica y actualiza la tabla segun los criterios de filtrado.
-   */
-  onSearchInputChange(): void {
     const searchValue = this.buscadorControl.value?.toLowerCase() || '';
+
     this.filteredEstadisticas = this.estadisticas.filter(estadistica => {
-      return (
+      const matchesNivelEducativo = nivelEducativo ? estadistica.nivelEducativo === nivelEducativo : true;
+      const matchesSearch = (
         estadistica.centro.nombre.toLowerCase().includes(searchValue) ||
         estadistica.nivelEducativo?.toLowerCase().includes(searchValue) ||
         estadistica.anoAcademico?.toString().includes(searchValue) ||
@@ -108,13 +89,16 @@ export class EstadisticasResultadosComponent implements OnInit {
         estadistica.numeroAlumnosNEEs?.toString().includes(searchValue) ||
         estadistica.datosEspecificosRendimiento?.toLowerCase().includes(searchValue)
       );
+
+      return matchesNivelEducativo && matchesSearch;
     });
 
     this.dataSource.data = this.filteredEstadisticas;
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
-    /**
+  /**
    * Maneja el cambio de página en el paginador.
    */
   onPageChange(): void {
@@ -128,7 +112,7 @@ export class EstadisticasResultadosComponent implements OnInit {
     this.router.navigate(['/principal']);
   }
 
-    /**
+  /**
    * Método para resetear los filtros
    */
   resetFilters(): void {

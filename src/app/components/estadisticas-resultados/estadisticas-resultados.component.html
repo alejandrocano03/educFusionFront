@@ -2,7 +2,7 @@
   <h1 class="title">Estadísticas y Resultados</h1>
 
   <div class="filter-section">
-    <mat-select class="filter-select" [formControl]="nivelEducativoControl" (selectionChange)="onNivelEducativoSChange()">
+    <mat-select class="filter-select" [formControl]="nivelEducativoControl" (selectionChange)="applyFilters()">
       <mat-option value="" disabled selected>Filtro por Nivel educativo</mat-option>
       <mat-option *ngFor="let nivel of NIVEL_EDUCATIVO_S" [value]="nivel">{{ nivel }}</mat-option>
     </mat-select>
@@ -11,7 +11,7 @@
       class="search-input"
       type="text"
       [formControl]="buscadorControl"
-      (input)="onSearchInputChange()"
+      (input)="applyFilters()"
       placeholder="Buscar dinámicamente estadísticas..."
     />
     <button class="reset-button" (click)="resetFilters()">Resetear Filtros</button>

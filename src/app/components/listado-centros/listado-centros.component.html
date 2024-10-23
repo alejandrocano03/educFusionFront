@@ -2,7 +2,7 @@
   <h1 class="title">Listado Centros</h1>
 
   <div class="filter-section">
-    <mat-select class="filter-select" [formControl]="tipoCentroControl" (selectionChange)="onTipoCentroChange()">
+    <mat-select class="filter-select" [formControl]="tipoCentroControl" (selectionChange)="applyFilters()">
       <mat-option value="" disabled selected>Filtro por Tipo de Centro</mat-option>
       <mat-option *ngFor="let tipo of TIPO_CENTROS" [value]="tipo">{{ tipo }}</mat-option>
     </mat-select>
@@ -11,7 +11,7 @@
       class="search-input"
       type="text"
       [formControl]="buscadorControl"
-      (input)="onSearchInputChange()"
+      (input)="applyFilters()"
       placeholder="Buscar centro..."
     />
     <button class="reset-button" (click)="resetFilters()">Resetear Filtros</button>
