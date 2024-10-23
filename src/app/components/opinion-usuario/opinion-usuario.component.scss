@@ -2,13 +2,13 @@
 .opinion-container {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Mantiene el contenido centrado */
-  justify-content: flex-start; /* Asegura que el contenido esté alineado al inicio */
-  width: 80%; /* Cambiado a 80% para ocupar menos espacio horizontal */
-  height: 100vh; /* Ajustar a toda la altura de la ventana */
+  align-items: center; 
+  justify-content: flex-start;
+  width: 80%; 
+  height: 100vh;
   padding: 20px;
-  box-sizing: border-box; /* Incluye padding en el cálculo del ancho total */
-  margin: 0 auto; /* Centra el contenedor horizontalmente */
+  box-sizing: border-box; 
+  margin: 0 auto; 
 }
 
 /* Estilo del título */
@@ -17,7 +17,7 @@
   font-weight: bold;
   color: #4a90e2;
   text-align: center;
-  width: 100%; /* Asegúrate de que ocupa todo el ancho */
+  width: 100%; 
   margin: 0;
 }
 
@@ -25,32 +25,32 @@
 .main-content {
   display: flex;
   justify-content: space-between;
-  width: 100%; /* Asegúrate de que ocupa todo el ancho de la pantalla */
-  flex-grow: 1; /* Permite que ocupe el espacio restante */
+  width: 100%; 
+  flex-grow: 1;
   margin-top: 40px;
 }
 
 /* Sección del formulario */
 .form-section {
-  flex: 0 0 40%; /* Aumentar a 40% para que ocupe más espacio a la izquierda */
-  margin-right: 30px; /* Espacio a la derecha entre el formulario y la tabla */
+  flex: 0 0 40%; 
+  margin-right: 30px;
 }
 
 /* Sección de opiniones */
 .opiniones-section {
-  flex: 0 0 60%; /* Cambiar a 60% para que balancee el espacio */
-  overflow-y: auto; /* Permitir el desplazamiento vertical si es necesario */
+  flex: 0 0 60%; 
+  overflow-y: auto;
 }
 
 /* Estilo de los campos de entrada */
 .input-group {
   display: flex;
   justify-content: space-between;
-  gap: 15px; /* Espacio entre los campos de nombre y centro */
+  gap: 15px;
 }
 
 .half-width {
-  width: 100%; /* Cambiar a 100% para que el campo ocupe todo el ancho disponible */
+  width: 100%;
 }
 
 .full-width {
@@ -68,7 +68,7 @@
   background-color: #007BFF;
   color: white;
   border: none;
-  width: 48%; /* Asegúrate de que los botones ocupen el espacio disponible */
+  width: 48%;
   padding: 12px;
   border-radius: 4px;
   cursor: pointer;
@@ -80,20 +80,17 @@
 }
 
 /* Tabla */
-.mat-table {
-  width: 100%; /* Asegúrate de que la tabla ocupe todo el ancho */
+.mdc-data-table {
+  width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
 }
-
 .mat-header-cell, .mat-cell {
   padding: 12px;
   text-align: left;
 }
-
-.mat-header-cell {
-  background-color: #007BFF;
-  color: white;
+.mat-mdc-table{
+  background-color: white;
 }
 
 /* Estilo para el encabezado de la tabla */
@@ -117,3 +114,8 @@ mat-error {
   margin-top: 10px;
   text-align: center;
 }
+
+.valoraciones-title{
+  text-align: center;
+}
+

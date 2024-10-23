@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { OpinionUsuario } from '../models/opinionUsuario';
+import { OpinionUsuario } from '../../models/opinionUsuario'; 
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CentroEducativo } from '../models/centroEducativo';
-import { Usuario } from '../models/usuario';
-import { OpinionDeUsuarioService } from '../services/OpinionDeUsuarioService.service';
-import { CentroEducativoService } from '../services/CentroEducativoService.service';
-import { SharedUsuarioService } from '../services/shared-usuario.service';
+import { CentroEducativo } from '../../models/centroEducativo';
+import { Usuario } from '../../models/usuario';
+import { OpinionDeUsuarioService } from '../../services/OpinionDeUsuarioService.service';
+import { CentroEducativoService } from '../../services/CentroEducativoService.service';
+import { SharedUsuarioService } from '../../services/shared-usuario.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -14,10 +14,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSort, MatSortModule } from '@angular/material/sort';
+import { CustomPaginator } from '../../utils/CustomPaginator';
 
 @Component({
   selector: 'app-opinion-usuario',
@@ -25,7 +26,8 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
   imports: [MatFormFieldModule, ReactiveFormsModule, CommonModule, MatInputModule, MatMenuModule, HttpClientModule, 
             MatSelectModule, MatOptionModule, MatPaginatorModule, MatIconModule, MatTableModule, MatPaginatorModule, MatSortModule ],
   templateUrl: './opinion-usuario.component.html',
-  styleUrls: ['./opinion-usuario.component.scss']
+  styleUrls: ['./opinion-usuario.component.scss'],
+  providers: [{ provide: MatPaginatorIntl, useClass: CustomPaginator }],
 })
 export class OpinionUsuarioComponent implements OnInit {
   opinionForm: FormGroup;
@@ -121,12 +123,9 @@ export class OpinionUsuarioComponent implements OnInit {
       };
 
       this.opinionService.createOpinion(opinion).subscribe({
-        next: (response) => {
+        next: () => {
           this.loadOpiniones();
           this.opinionForm.reset();
-        },
-        error: (error) => {
-          console.error('Error al enviar la opinión:', error);
         },
         complete: () => {
           console.log('Opinión enviada exitosamente.');

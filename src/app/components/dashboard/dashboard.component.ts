@@ -20,15 +20,12 @@ export class DashboardComponent implements OnInit{
 
   public ngOnInit(): void {
     this.usuario = this.sharedUsuarioService.getUsuarioIniciado(); 
-    console.log(this.usuario);
   }
 
   public logout(): void {
     const usuarioActual = this.sharedUsuarioService.getUsuarioIniciado();
     if (usuarioActual) {
-       // Actualiza la fecha de última actividad al momento de cerrar sesión
        usuarioActual.ultimaFechaAcceso = new Date();
-        // Llama al servicio para actualizar el usuario en la base de datos
         this.usuarioService.updateUsuario(usuarioActual).subscribe({
           next: () => {
               console.log('Fecha de última actividad actualizada en la base de datos.');
@@ -43,8 +40,6 @@ export class DashboardComponent implements OnInit{
   }
 
   public navigateTo(panel: string): void {
-    // Aquí puedes usar el router para navegar a diferentes rutas
-    // Por ejemplo: 
     this.router.navigate([`/${panel}`]);
   }
   
