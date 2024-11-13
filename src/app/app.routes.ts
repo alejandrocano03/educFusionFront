@@ -5,6 +5,7 @@ import { AuthGuard } from './auth.guard';
 import { OpinionUsuarioComponent } from './components/opinion-usuario/opinion-usuario.component'; 
 import { ListadoCentrosComponent } from './components/listado-centros/listado-centros.component';
 import { EstadisticasResultadosComponent } from './components/estadisticas-resultados/estadisticas-resultados.component';
+import { MapasComponent } from './components/mapas/mapas.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -12,6 +13,7 @@ export const routes: Routes = [
     { path: 'opinionUsuario', component: OpinionUsuarioComponent, canActivate: [AuthGuard] },
     { path: 'listadosCentros', component: ListadoCentrosComponent, canActivate: [AuthGuard] },
     { path: 'estadisticasYResultados', component: EstadisticasResultadosComponent, canActivate: [AuthGuard] },
+    { path: 'mapas', component: MapasComponent, canActivate: [AuthGuard] },
 
     { path: '**', redirectTo: '/login' }
   ];

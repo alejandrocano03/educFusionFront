@@ -1,0 +1,32 @@
+<div class="mapas-container">
+  <h1 class="title">Mapas Interactivos</h1>
+  <div class="buttons">
+    <button class="back-button" (click)="volver()">Volver</button>
+  </div>
+  <div class="main-content">
+    <!-- Listado de centros -->
+    <div class="centros-list">
+      <h2>Listado de Centros Educativos</h2>
+      <ul>
+        <!-- Listado de mapas con sus centros -->
+        <li *ngFor="let mapa of mapas" (click)="onCentroClick(mapa)" [attr.data-nombre]="mapa.centro.nombre" class="centro-item">
+          <div class="centro-info">
+            <strong>{{ mapa.centro.nombre }}</strong>
+            <p>{{ mapa.centro.direccion }}</p>
+          </div>
+        </li>
+        <!-- Opción para deseleccionar el mapa -->
+        <li (click)="onCentroClick(null)" class="centro-item deselect-item">
+          <div class="centro-info">
+            <strong>Deseleccionar Mapa</strong>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Sección del mapa -->
+    <div class="mapa-section">
+      <div class="map" #map></div>
+    </div>
+  </div>
+</div>

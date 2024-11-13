@@ -9,6 +9,7 @@ import { AuthGuard } from './auth.guard';
 import { OpinionUsuarioComponent } from './components/opinion-usuario/opinion-usuario.component';
 import { ListadoCentrosComponent } from './components/listado-centros/listado-centros.component';
 import { EstadisticasResultadosComponent } from './components/estadisticas-resultados/estadisticas-resultados.component';
+import { MapaInteractivo } from './models/mapaInteractivo';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'opinionUsuario', component: OpinionUsuarioComponent, canActivate: [AuthGuard] },
   { path: 'listadosCentros', component: ListadoCentrosComponent, canActivate: [AuthGuard] },
   { path: 'estadisticasYResultados', component: EstadisticasResultadosComponent, canActivate: [AuthGuard] },
+  { path: 'mapas', component: MapaInteractivo, canActivate: [AuthGuard] },
 
   { path: '**', redirectTo: '/login' }
 ];
