@@ -6,6 +6,7 @@ import { OpinionUsuarioComponent } from './components/opinion-usuario/opinion-us
 import { ListadoCentrosComponent } from './components/listado-centros/listado-centros.component';
 import { EstadisticasResultadosComponent } from './components/estadisticas-resultados/estadisticas-resultados.component';
 import { MapasComponent } from './components/mapas/mapas.component';
+import { GenerarInformesComponent } from './components/generar-informes/generar-informes.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -14,6 +15,7 @@ export const routes: Routes = [
     { path: 'listadosCentros', component: ListadoCentrosComponent, canActivate: [AuthGuard] },
     { path: 'estadisticasYResultados', component: EstadisticasResultadosComponent, canActivate: [AuthGuard] },
     { path: 'mapas', component: MapasComponent, canActivate: [AuthGuard] },
+    { path: 'informes', component: GenerarInformesComponent, canActivate: [AuthGuard] },
 
     { path: '**', redirectTo: '/login' }
   ];

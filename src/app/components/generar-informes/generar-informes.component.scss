@@ -1,13 +1,10 @@
-/* Estilo del contenedor de opiniones */
-.opinion-container {
+.generar-informes-container {
   display: flex;
   flex-direction: column;
   align-items: center; 
   justify-content: flex-start;
   width: 80%; 
-  height: 100vh;
   padding: 20px;
-  box-sizing: border-box; 
   margin: 0 auto; 
 }
 
@@ -36,24 +33,34 @@
   margin-right: 30px;
 }
 
-/* Sección de opiniones */
-.opiniones-section {
-  flex: 0 0 60%; 
-  overflow-y: auto;
+/* Datos opcionales */
+.checkbox-container {
+  margin-top: 20px;
+  padding: 15px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  text-align: left;
+
+  h3 {
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .mat-checkbox {
+    margin-bottom: 10px;
+  }
 }
 
 /* Estilo de los campos de entrada */
-.input-group {
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-}
-
 .half-width {
-  width: 100%;
-}
-
-.full-width {
   width: 100%;
 }
 
@@ -79,31 +86,7 @@
   background-color: #0056b3;
 }
 
-/* Tabla */
-.mdc-data-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-.mat-header-cell, .mat-cell {
-  padding: 12px;
-  text-align: left;
-}
-.mat-mdc-table{
-  background-color: white;
-}
-
-/* Estilo para el encabezado de la tabla */
-.mat-sort-header {
-  cursor: pointer;
-}
-
-/* Paginador */
-.mat-paginator {
-  margin-top: 20px;
-}
-
-/* Estilo de mensajes de error */
+/* Estilo para mensajes de error */
 mat-error {
   color: red;
   font-size: 12px;
@@ -114,8 +97,3 @@ mat-error {
   margin-top: 10px;
   text-align: center;
 }
-
-.valoraciones-title{
-  text-align: center;
-}
-

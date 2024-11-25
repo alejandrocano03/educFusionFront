@@ -1,0 +1,61 @@
+<div class="generar-informes-container">
+  <h1 class="title">Generar Informe</h1>
+  <!-- Formulario -->
+  <form [formGroup]="informeForm" (ngSubmit)="generarInforme()">     
+    <!-- Tipo de Informe -->
+    <mat-form-field appearance="fill" class="half-width">
+      <mat-label>Tipo de Informe</mat-label>
+      <mat-select formControlName="tipoInforme" required>
+        <mat-option *ngFor="let tipo of tiposInforme" [value]="tipo">
+          {{ tipo }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="informeForm.get('tipoInforme')?.hasError('required')">Campo obligatorio</mat-error>
+    </mat-form-field>
+
+    <!-- Año Académico -->
+    <mat-form-field appearance="fill" class="half-width">
+      <mat-label>Año Académico</mat-label>
+      <mat-select formControlName="anoAcademico" required>
+        <mat-option *ngFor="let ano of anosAcademicos" [value]="ano">
+          {{ ano }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="informeForm.get('anoAcademico')?.hasError('required')">Campo obligatorio</mat-error>
+    </mat-form-field>
+
+    <!-- Centro Educativo -->
+    <mat-form-field appearance="fill" class="half-width">
+      <mat-label>Centro Educativo</mat-label>
+      <mat-select formControlName="centroEducativo" required>
+        <mat-option *ngFor="let centro of centrosEducativos" [value]="centro.nombre">
+          {{ centro.nombre }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="informeForm.get('centroEducativo')?.hasError('required')">Campo obligatorio</mat-error>
+    </mat-form-field>
+
+    <!-- Datos Opcionales -->
+    <div class="checkbox-container">
+      <h3>Selecciona los Datos a Incluir:</h3>
+      <div *ngFor="let dato of datosOpcionales">
+        <label>
+          <input
+            type="checkbox"
+            [value]="dato.value"
+            (change)="onCheckboxChange($event)"
+          />
+          {{ dato.label }}
+        </label>
+      </div>
+    </div>
+    <mat-error *ngIf="informeForm.get('datosIncluidos')?.hasError('required') && isActivated">Debes seleccionar al menos un dato a incluir en el informe</mat-error>
+
+
+    <!-- Botones -->
+    <div class="buttons">
+      <button class="button" (click)="volver()">Volver</button>
+      <button class="button" type="submit">Generar Informe</button>
+    </div>
+  </form>
+</div>
