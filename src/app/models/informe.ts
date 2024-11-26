@@ -7,5 +7,5 @@ export class Informe {
   fechaGeneracion?: Date;
 
   autorInforme!: Usuario;
-  centro!: CentroEducativo;
+  centro?: CentroEducativo;
 }

@@ -22,23 +22,32 @@ export class DashboardComponent implements OnInit{
     this.usuario = this.sharedUsuarioService.getUsuarioIniciado(); 
   }
 
+  /**
+   * Método que cierra la sesión del usuario y actualiza la ultima fecha de acceso,
+   * Redirige al login.
+   */
   public logout(): void {
     const usuarioActual = this.sharedUsuarioService.getUsuarioIniciado();
     if (usuarioActual) {
-       usuarioActual.ultimaFechaAcceso = new Date();
-        this.usuarioService.updateUsuario(usuarioActual).subscribe({
-          next: () => {
-              console.log('Fecha de última actividad actualizada en la base de datos.');
-          },
-          error: (err) => {
-              console.error('Error al actualizar la última fecha de acceso:', err);
-          }
+      // Actualizamos el usuario completo (enviar usuario con la nueva fecha de acceso)
+      usuarioActual.ultimaFechaAcceso = new Date();
+      
+      this.usuarioService.updateUsuario(usuarioActual).subscribe({
+        next: () => {
+        },
+        error: (err) => {
+          console.error('Error al actualizar la última fecha de acceso:', err);
+        }
       });
       this.sharedUsuarioService.clearUsuarioIniciado();
     }
     this.router.navigate(['/login']);
   }
 
+  /**
+   * Método que navega entre paneles.
+   * @param panel Panel a navegar
+   */
   public navigateTo(panel: string): void {
     this.router.navigate([`/${panel}`]);
   }

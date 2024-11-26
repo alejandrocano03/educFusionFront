@@ -12,6 +12,7 @@ import { Informe } from '../../models/informe';
 import { InformeService } from '../../services/InformeService.service';
 import { Usuario } from '../../models/usuario';
 import { SharedUsuarioService } from '../../services/shared-usuario.service';
+import { SharedInformeService } from '../../services/shared-informe.service';
 
 @Component({
   selector: 'app-generar-informe',
@@ -38,7 +39,6 @@ export class GenerarInformesComponent implements OnInit {
     { label: 'Promedio de Calificaciones', value: 'Promedio de Calificaciones' },
     { label: 'Número de Alumnos', value: 'Número de Alumnos' },
     { label: 'Número de Alumnos NEEs', value: 'Número de Alumnos NEEs' },
-    { label: 'Tasa de Aprobación', value: 'Tasa de Aprobación' },
     { label: 'Nivel Educativo', value: 'Nivel Educativo' },
   ];
 
@@ -51,7 +51,8 @@ export class GenerarInformesComponent implements OnInit {
     private centroService: CentroEducativoService,
     private rendimientoService: EstadisticaRendimientoEducativoService,
     private informeService: InformeService,
-    private sharedUsuarioService: SharedUsuarioService
+    private sharedUsuarioService: SharedUsuarioService,
+    private sharedInformeService: SharedInformeService
   ) {}
 
   ngOnInit(): void {
@@ -151,21 +152,18 @@ export class GenerarInformesComponent implements OnInit {
         datosIncluidos: datosIncluidosString,
         fechaGeneracion: new Date(),
         centro: centroSeleccionado,
-        autorInforme: this.usuario || {
-          nombre: 'Invitado',
-          apellido: '',
-          correoElectronico: '',
-          contraseñaCifrada: '',
-          rol: 'invitado',
-          fechaRegistro: new Date(),
-        },
+        autorInforme: this.usuario || {}
       };
-  
+      
   
       // Llamar al servicio para guardar el informe
       this.informeService.createInforme(informe).subscribe({
-        next: () => {
+        next: (nuevoInforme) => {
+          this.sharedInformeService.setInformeGenerado(nuevoInforme);
+          this.sharedInformeService.setAñoInforme(this.informeForm.value.anoAcademico);
           
+          // Abrimos la pantalla de informe generado:
+          this.router.navigate(['/informeGenerado']);
         },
         error: (err) => {
           console.error('Error al guardar el informe:', err);

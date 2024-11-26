@@ -2,6 +2,7 @@ import { CategoriaCentros } from "./categoriaCentros";
 
 
 export class CentroEducativo {
+  id!: number;
   nombre!: string;
   direccion!: string;
   tipoCentro!: string;

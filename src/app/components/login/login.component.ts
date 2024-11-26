@@ -44,16 +44,28 @@ export class LoginComponent implements OnInit{
       this.errorMessage = 'Por favor, complete todos los campos.';
       return;
     }
-
+  
     // Obtener los valores del formulario
     const correoElectronico = this.loginForm.get('correoElectronico')?.value;
     const contraseña = this.loginForm.get('contraseña')?.value;
-
+  
     // Usar observer con subscribe
     this.usuarioService.authenticate(correoElectronico, contraseña).subscribe({
       next: (usuario) => {
-        this.sharedUsuarioService.setUsuarioIniciado(usuario);
-        this.router.navigate(['/principal']);
+        const fechaActual = new Date();
+        usuario.ultimaFechaAcceso = fechaActual;
+  
+        // Actualizar el usuario completo (enviar usuario con la nueva fecha de acceso)
+        this.usuarioService.updateUsuario(usuario).subscribe({
+          next: (updatedUsuario) => {
+            this.sharedUsuarioService.setUsuarioIniciado(updatedUsuario);
+            this.router.navigate(['/principal']);
+          },
+          error: (error) => {
+            console.error('Error al actualizar la fecha de acceso', error);
+            this.errorMessage = 'Hubo un problema al actualizar la fecha de acceso. Intenta nuevamente.';
+          }
+        });
       },
       error: (error) => {
         this.errorMessage = 'Usuario o contraseña incorrectos. Por favor, inténtelo de nuevo.';
@@ -61,4 +73,5 @@ export class LoginComponent implements OnInit{
       },
     });
   }
+  
 }
