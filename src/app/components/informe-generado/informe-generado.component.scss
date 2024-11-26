@@ -1,0 +1,104 @@
+.generar-informes-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 80%;
+  padding: 20px;
+  margin: 0 auto;
+  background-color: transparent; /* Eliminamos el fondo sólido */
+}
+
+.title {
+  font-size: 45px;
+  font-weight: bold;
+  color: #4a90e2;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 30px;
+  margin-top: 0;  /* Sin margen superior */
+}
+
+.informacion-informe {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con opacidad */
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.informe-header {
+  display: flex;
+  flex-direction: column; /* Organizar en columnas */
+  align-items: center; /* Centrar texto */
+  margin-bottom: 20px;
+}
+
+.tipo-informe {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  text-align: center; /* Centrado */
+  margin-bottom: 10px; /* Separación entre los textos */
+}
+
+.centro-ano {
+  font-size: 16px;
+  color: #555;
+  text-align: center; /* Centrado */
+  margin-bottom: 20px; /* Separación de la tabla */
+}
+
+.tabla-informe {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.tabla-informe th, .tabla-informe td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.tabla-informe th {
+  background-color: #007bff;
+  color: white;
+}
+
+.tabla-informe td {
+  background-color: #f9f9f9;
+}
+
+.generado-por {
+  font-size: 14px;
+  color: #333;
+  margin-top: 20px;
+  text-align: right;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.button {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 48%;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.button:focus {
+  outline: none;
+}

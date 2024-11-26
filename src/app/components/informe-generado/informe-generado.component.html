@@ -1,0 +1,38 @@
+<div class="generar-informes-container">
+  <h1 class="title">Informe Generado</h1>
+
+  <div class="informacion-informe">
+    <div *ngIf="informe && informe.centro">
+      <div class="informe-header">
+        <h2 class="tipo-informe">Tipo de Informe: {{ informe.tipoInforme || '' }}</h2>
+        <h3 class="centro-ano">Centro Educativo: {{ informe.centro.nombre || '' }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Año Académico: {{ anoAcademico }}</h3>
+      </div>
+      <table id="pdf-content" class="tabla-informe">
+        <thead>
+          <tr>
+            <th>Nombre Centro</th>
+            <th *ngFor="let columna of columnas">{{ columna }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let estadistica of estadisticas">
+            <td>{{ informe.centro.nombre }}</td>
+            <td *ngIf="columnas.includes('Nivel Educativo')">{{ estadistica.nivelEducativo }}</td>
+            <td *ngIf="columnas.includes('Número de Alumnos')">{{ estadistica.numeroAlumnos }}</td>
+            <td *ngIf="columnas.includes('Número de Alumnos NEEs')">{{ estadistica.numeroAlumnosNEEs }}</td>
+            <td *ngIf="columnas.includes('Promedio de Calificaciones')">{{ estadistica.promedioCalificaciones }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="generado-por">
+      <p>Informe generado por {{usuario?.nombre || ''}} {{usuario?.apellido || ''}} {{formatDate(informe?.fechaGeneracion) || ''}}</p>
+    </div>
+    
+    <div class="buttons">
+      <button class="button" (click)="volver()">Volver</button>
+      <button class="button" (click)="generarPDF()">Descargar PDF</button>
+    </div>
+  </div>
+</div>
