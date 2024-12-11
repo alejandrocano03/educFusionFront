@@ -28,5 +28,5 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 =======
 # educFusion
-Front y Back de educFusion
+Front de educFusion
 >>>>>>> 533f6cb2cd3f01e7af4a9b14d6e7a5efa2e77d7e
